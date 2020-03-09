@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+
+        <import type="com.example.android.databinding.twowaysample.util.MyConverter" />
+
+        <variable
+            name="viewModel"
+            type="com.example.android.databinding.twowaysample.data.MyDataViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".BlogDemoActivity">
+
+        <EditText
+            android:id="@+id/etText"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="40dp"
+            android:background="#bdbdbd"
+            android:gravity="center"
+            android:text="@={viewModel.name}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btnChangeViewModel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{()->viewModel.changeName()}"
+            android:text="改变ViewModel的name属性"
+            android:textAllCaps="false"
+            app:layout_constraintTop_toBottomOf="@+id/etText" />
+
+        <Button
+            android:id="@+id/btnChangeText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="改变text"
+            android:textAllCaps="false"
+            app:layout_constraintTop_toBottomOf="@+id/btnChangeViewModel" />
+
+
+        <com.example.android.databinding.twowaysample.MyView
+            android:id="@+id/myView"
+            time="@={viewModel.time}"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="#bdbdbd"
+            app:layout_constraintTop_toBottomOf="@+id/btnChangeText" />
+
+        <Button
+            android:id="@+id/btnChangeViewModelTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="改变ViewModel的time值"
+            android:textAllCaps="false"
+            app:layout_constraintTop_toBottomOf="@+id/myView" />
+
+        <Button
+            android:id="@+id/btnChangeMyViewTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="直接改变MyView的time属性"
+            android:textAllCaps="false"
+            app:layout_constraintTop_toBottomOf="@+id/btnChangeViewModelTime" />
+
+        <TextView
+            android:id="@+id/etConvertText"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="40dp"
+            android:background="#bdbdbd"
+            android:gravity="center"
+            android:text="@={MyConverter.dateToString(viewModel.birthDate)}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnChangeMyViewTime" />
+
+        <Button
+            android:id="@+id/btnChangeViewModelDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="直接改变ViewModel的birthDate属性"
+            android:textAllCaps="false"
+            app:layout_constraintTop_toBottomOf="@+id/etConvertText" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
